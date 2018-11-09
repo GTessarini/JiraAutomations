@@ -56,7 +56,7 @@ while(outputMinute >= 60){
 
 logger.info(outputHour + "h " + outputMinute + "m")
 
-def output = (outputHour == 0 ? "" : (outputHour + "h ")) + (outputMinute == 0 ? "00" : outputMinute)  + "m"
+def output = (outputHour == 0 ? "" : (outputHour + "h ")) + (outputMinute == 0 ? "0" : outputMinute)  + "m"
 
 put("/rest/api/2/issue/"+ issue.key + "")
     .header("Content-Type", "application/json")
