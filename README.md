@@ -9,3 +9,5 @@ A script to add on Jira Script Runner "Script Listener" with method "Issue Updat
 
 ## scriptJiraCreateSubTaks
 A script to add on Jira Script Runner "Script Listener" with method "Issue Created" to automatically create each subtask required for the task after it creation.
+
+/**Gabriel Tessarini**/
