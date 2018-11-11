@@ -9,8 +9,10 @@ def issueType = "Sub-task"
 
 def issueTypeId = issueTypes.find { it.subtask && it.name == issueType }?.id
 
-if(issueTypeId != null){ 
-    // Create each subtask defined in summary
+if(issueTypeId == null){ 
+    logger.info("No issueTypeId found for this issueType '" + issueType + "'")
+}else{
+     // Create each subtask defined in summary
     for(s in summary){
         def createDoc = [
             fields: [
@@ -32,8 +34,6 @@ if(issueTypeId != null){
         def subtask = resp.body
         assert resp.status >= 200 && resp.status < 300 && subtask && subtask.key != null
     }
-}else{
-    logger.info("No issueTypeId found for this issueType '" + issueType + "'")
 }
 
 /* Gabriel Tessarini */
