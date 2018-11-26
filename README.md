@@ -10,7 +10,7 @@ A script to add on Jira Script Runner "Script Listener" with method "Issue Updat
 ## scriptJiraCreateSubTaks
 A script to add on Jira Script Runner "Script Listener" with method "Issue Created" to automatically create each subtask required for the task after it creation.
 
-## scriptJiraCreateIssueOnOtherProject
+## scriptJiraCopyIssueOnOtherProject
 A script to add on Jira Script Runner "Script Listener" with method "Issue Updated" to create automatically an issue with same summary (name) and type when it reaches specific status on project.
 
 /**Gabriel Tessarini**/
