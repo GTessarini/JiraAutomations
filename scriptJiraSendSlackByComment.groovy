@@ -10,7 +10,7 @@ def thisIssue = get("/rest/api/2/issue/" + issue["id"] + "")
     .body
    
 //Get all label values in this issue
-def labels = thisIssue.fields["labels"];
+def labels = thisIssue.fields["labels"]
 
 //Send a Slack for each user with label in this issue
 for(label in labels){
