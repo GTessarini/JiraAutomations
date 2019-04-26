@@ -11,7 +11,19 @@ def thisIssue = get("/rest/api/2/issue/" + issue["id"] + "")
    
 //Get all label values in this issue
 def labels = thisIssue.fields["labels"]
-
+//Get issue summary
+def summary = thisIssue.fields["summary"];
+// Check if is a worklog of a task or a subtask
+if(thisIssue != null && thisIssue.fields["issuetype"]["subtask"] == true){
+    summary = thisIssue.fields["parent"].fields["summary"].toString() + " -> " + summary + "";
+	//Get parent label if subtask's is not filled
+    if(labels.size() == 0){
+        labels =  get("/rest/api/2/issue/" + thisIssue.fields["parent"]["id"] + "")
+                    .asObject(Map)
+                    .body
+                    .fields["labels"];
+    }
+}
 //Send a Slack for each user with label in this issue
 for(label in labels){
     for(slack in slacks){
