@@ -16,6 +16,9 @@ A script to add on Jira Script Runner "Script Listener" with method "Issue Updat
 ## scriptJiraCreateAndLinkIssueInAnotherProject
 A script to add on Jira Script Runner "Script Listener" with method "Issue Updated" to create automatically an issue linked copy with same summary (name), type and Epic Link when it reaches specific status on project keeping a relationship between then
 
+## scriptJiraUpdateAnotherProjectFieldBySubtaskChange
+A script to add on Jira Script Runner "Script Listener" with method "Issue Updated" to update automatically a field in some defined project by the status changes in subtasks of linked issue in another project
+
 ## scriptJiraSendCommentForSlack
 A script to add on Jira Script Runner "Script Listener" with method "Comment Created" to send automatically a message on Slack when a comment is made on task with the comment author and content to user with identifier on task label 
 
