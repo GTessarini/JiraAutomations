@@ -1,3 +1,8 @@
+/* Check if is subtask */
+if(issue == null || issue.fields["issuetype"]["subtask"] == true){
+    return
+}
+
 // Retrieve all issue types
 def typeResp = get('/rest/api/2/issuetype').asObject(List)
 assert typeResp.status == 200
@@ -13,23 +18,35 @@ if(issueTypeId == null){
     logger.info("No issueTypeId found for this issueType '" + issueType + "'")
 }else{
      // Create each subtask defined in summary
-    for(s in summary){
-        def createDoc = [
-            fields: [
-                project: (issue.fields as Map).project,
-                issuetype: [
-                    id: issueTypeId
-                ],
-                parent: [
-                    id: issue.id
-                ],
-                summary: s
-            ]
+    logger.info("Will create subtasks")
+    def labels = issue.fields["labels"]
+    if(labels.size() == 0){
+        labels = [""]
+    }
+    def subTaskBody = [
+        fields: [
+            project: (issue.fields as Map).project,
+            issuetype: [
+                id: issueTypeId
+            ],
+            parent: [
+                id: issue.id
+            ],
+            summary: "",
+            labels: labels
         ]
+     ]
+     for(subtaskName in summary){          
+        subTaskBody.fields["summary"] = subtaskName
+         if(issue.fields["assignee"]){
+            subTaskBody.fields["assignee"] = [
+                id: issue.fields["assignee"]["accountId"]
+            ]
+        }
         // Post the subtask on Jira
         def resp = post("/rest/api/2/issue")
                 .header("Content-Type", "application/json")
-                .body(createDoc)
+                .body(subTaskBody)
                 .asObject(Map)
         def subtask = resp.body
         assert resp.status >= 200 && resp.status < 300 && subtask && subtask.key != null
