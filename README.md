@@ -22,5 +22,8 @@ A script to add on Jira Script Runner "Script Listener" with method "Issue Updat
 ## scriptJiraSendCommentForSlack
 A script to add on Jira Script Runner "Script Listener" with method "Comment Created" to send automatically a message on Slack when a comment is made on task with the comment author and content to user with identifier on task label 
 
+## scriptJiraSendAttachmentForSlack
+A script to add on Jira Script Runner "Script Listener" with method "Issue Updated" to send automatically a message on Slack when a attachment is add on task to user with identifier on task label 
+
 
 /**Gabriel Tessarini**/
