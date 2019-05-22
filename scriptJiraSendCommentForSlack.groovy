@@ -32,7 +32,7 @@ for(label in labels){
                 .header("Content-Type", "application/json")
                 .body(
                     [
-                        text: "JIRA -> *" + summary + "*:\n"+ "https://fiapon.atlassian.net/browse/" + issue["key"] + "\n"+ " You receive a comment from user '" + comment.author.displayName + "':\n" + comment.body
+                        text: "JIRA -> *" + summary + "*:\n"+ "https://business.atlassian.net/browse/" + issue["key"] + "\n"+ " You receive a comment from user '" + comment.author.displayName + "':\n" + comment.body
                     ]                    
                 )
                 .asString()
