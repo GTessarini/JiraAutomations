@@ -25,5 +25,8 @@ A script to add on Jira Script Runner "Script Listener" with method "Comment Cre
 ## scriptJiraSendAttachmentForSlack
 A script to add on Jira Script Runner "Script Listener" with method "Issue Updated" to send automatically a message on Slack when a attachment is add on task to user with identifier on task label 
 
+## scriptJiraRenameIssueSummary
+A script to add on Jira Script Runner "Script Console" to automatically rename some issues with a certain term on it summary field
+
 
 /**Gabriel Tessarini**/
