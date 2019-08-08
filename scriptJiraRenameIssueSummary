@@ -1,0 +1,24 @@
+def issueType = "Task"
+def termToSearchOnSummary = "ELVIZ"
+def termToReplaceOnSummary = "ELVIS"
+
+def issuesWithCertainString = get('/rest/api/2/search')
+    .queryString('jql', "issuetype=" + issueType + " AND summary ~ " + termToSearchOnSummary + "")
+    .asObject(Map)
+    .body["issues"] as List<Map>
+            
+for(issue in issuesWithCertainString){
+    def issueSummary = issue.fields.summary
+    def issueKey = issue.key
+    def newSummary =  issueSummary.toString().replace(termToSearchOnSummary, termToReplaceOnSummary).toString()
+    def result = put('/rest/api/2/issue/'+ issueKey)
+        .header('Content-Type', 'application/json')
+            .body([
+        fields: [
+            summary: newSummary
+        ]
+    ])
+    .asString()
+}
+
+/* Gabriel Tessarini */
